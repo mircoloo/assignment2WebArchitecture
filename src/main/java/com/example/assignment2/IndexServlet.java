@@ -11,6 +11,8 @@ public class IndexServlet extends HttpServlet {
     boolean isAuth;
     HttpSession session;
     Integer score;
+    String playerName;
+    FileWriterReader fwr = new FileWriterReader();
 
 
     public void init(){
@@ -19,23 +21,15 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session = request.getSession();
-
-        synchronized(session) {
-            if (session.getAttribute("isAuth") == null || false) {
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            }
-
-
-
-            //User is auth
-            score = (Integer) session.getAttribute("score");
-            if (score == null) {
-                score = 0;
-            }
-            session.setAttribute("score", score);
+        System.out.println("Nome sessione:" + session.getAttribute("playerName"));
+        if(session.getAttribute("playerName") == null){
+            response.sendRedirect("login.jsp");
+        }else{
+            System.out.println("index page");
+            fwr.getUser();
             request.getRequestDispatcher("index.jsp").forward(request, response);
-
         }
+
 
 
     }

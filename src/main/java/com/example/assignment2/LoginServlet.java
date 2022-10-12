@@ -30,23 +30,10 @@ public class LoginServlet extends HttpServlet {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
         System.out.println(pr1.toString());
 
         oi.close();
         fi.close();
-
-
-        s = request.getSession();
-        System.out.println( s.getAttribute("playerName") + " " + s.getAttribute("score") );
-
-        score = (Integer)s.getAttribute("score");
-        if (score == null) {
-            score = 0;
-        } else {
-            score = score + 1;
-        }
-        s.setAttribute("score", score);
 
         request.getRequestDispatcher("login.jsp").forward(request,response);
     }
@@ -57,8 +44,10 @@ public class LoginServlet extends HttpServlet {
 
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
-        s.setAttribute("isAuth", "true");
+
         s.setAttribute("playerName", userName);
+        s.setAttribute("score", 0);
+
         request.getRequestDispatcher("index.jsp").forward(request,response);
     }
 }

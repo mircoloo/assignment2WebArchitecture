@@ -14,4 +14,9 @@
             com.example.assignment2.servletContext
         </listener-class>
     </listener>
+
+    <context-param>
+        <param-name>userDb</param-name>
+        <param-value>Users.txt</param-value>
+    </context-param>
 </web-app>

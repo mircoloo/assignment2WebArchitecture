@@ -18,7 +18,7 @@ public class User implements Serializable{
     }
 
     public String toString(){
-        return "Name:" + username + "\nScore: " + score;
+        return "Name:" + username + " Score: " + score;
     }
 
 }

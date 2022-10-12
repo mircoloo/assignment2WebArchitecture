@@ -7,7 +7,7 @@
     </head>
     <body>
     <jsp:include page="header.jsp"></jsp:include>
-    <p>Your Score is <%= session.getAttribute("score") %></p>
+    <p>Your Score is <b><%= session.getAttribute("score") %></b></p>
     <br/>
     </body>
 </html>
