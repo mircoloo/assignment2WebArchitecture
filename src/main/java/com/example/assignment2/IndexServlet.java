@@ -6,7 +6,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "IndexServlet", value = "")
-public class IndexServlet extends HttpServlet {
+public class IndexServlet extends CommonServlet{
 
     boolean isAuth;
     HttpSession session;
@@ -21,9 +21,9 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session = request.getSession();
-        System.out.println("Nome sessione:" + session.getAttribute("playerName"));
-        if(session.getAttribute("playerName") == null){
-            response.sendRedirect("login.jsp");
+        if(session.getAttribute("CURRENT_USER") == null){
+            request.setAttribute("err", "You haven't logged in to the system");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }else{
             System.out.println("index page");
             fwr.getUser();

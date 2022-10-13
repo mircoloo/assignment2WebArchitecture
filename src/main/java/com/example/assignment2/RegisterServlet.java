@@ -25,7 +25,7 @@ public class RegisterServlet extends HttpServlet {
 
         fwr.addUser(userName, password);
 
-        s.setAttribute("playerName", userName);
+        s.setAttribute("CURRENT_USER", userName);
         s.setAttribute("score", 0);
 
         request.getRequestDispatcher("index.jsp").forward(request,response);
