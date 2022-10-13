@@ -9,5 +9,6 @@
     <jsp:include page="header.jsp"></jsp:include>
     <p>Your Score is <b><%= session.getAttribute("score") %></b></p>
     <br/>
+    <a class="play-btn btn" href="GameServlet">Play</a>
     </body>
 </html>

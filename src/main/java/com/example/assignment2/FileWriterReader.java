@@ -1,35 +1,26 @@
 package com.example.assignment2;
 
-import javax.servlet.ServletContext;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Map;
+import java.io.*;
 
 public class FileWriterReader {
     FileOutputStream f;
-    //ServletContext scx = getServletContext();
     ObjectOutputStream o;
-    String filePathName = "Users.txt";
+    String filePathName;
 
-    public void init() {
-
+    FileWriterReader(String pathname){
+        filePathName = pathname;
     }
 
     public void addUser(String username, String password) {
 
-
         try {
-            f = new FileOutputStream(new File(filePathName));
+            File myFile = new File(filePathName);
+            f = new FileOutputStream(myFile);
             o = new ObjectOutputStream(f);
             //Add user
             User user1 = new User(username, password);
             o.writeObject(user1);
-
+            System.out.println("Added user: " + user1.toString());
             //Close stream
             o.close();
             f.close();
@@ -39,10 +30,11 @@ public class FileWriterReader {
         }
     }
 
-    public void getUser() {
+    public void getUser() throws IOException{
 
         try {
-            FileInputStream fi = new FileInputStream(new File(filePathName));
+            File myFile = new File(filePathName);
+            FileInputStream fi = new FileInputStream(myFile);
             ObjectInputStream oi = new ObjectInputStream(fi);
 
             User pr1 = (User) oi.readObject();
@@ -52,12 +44,9 @@ public class FileWriterReader {
             fi.close();
 
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
 
     }
 

@@ -17,6 +17,14 @@ public class User implements Serializable{
         this.password = password;
     }
 
+    public void updateScore(int score){
+        if(score < 0){
+             this.score = 0;
+        }else{
+            this.score = score;
+        }
+    }
+
     public String toString(){
         return "Name:" + username + " Score: " + score;
     }

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Objects;
 
 @WebServlet(name = "LoginServlet", value = "/loginServlet")
 public class LoginServlet extends HttpServlet {
@@ -20,21 +21,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        FileInputStream fi = new FileInputStream(new File("Users.txt"));
-        ObjectInputStream oi = new ObjectInputStream(fi);
-
-        // Read objects
-        User pr1 = null;
-        try {
-            pr1 = (User) oi.readObject();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println(pr1.toString());
-
-        oi.close();
-        fi.close();
-
         request.getRequestDispatcher("login.jsp").forward(request,response);
     }
 
@@ -45,9 +31,15 @@ public class LoginServlet extends HttpServlet {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
 
-        s.setAttribute("playerName", userName);
-        s.setAttribute("score", 0);
+        if(Objects.equals(userName, "admin") && Objects.equals(password, "nimda")){
+            request.getRequestDispatcher("AdminServlet").forward(request,response);
+        }else{
+            s.setAttribute("playerName", userName);
+            s.setAttribute("score", 0);
 
-        request.getRequestDispatcher("index.jsp").forward(request,response);
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+        }
+
+
     }
 }

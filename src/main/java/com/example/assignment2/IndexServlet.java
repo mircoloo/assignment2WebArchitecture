@@ -12,7 +12,7 @@ public class IndexServlet extends HttpServlet {
     HttpSession session;
     Integer score;
     String playerName;
-    FileWriterReader fwr = new FileWriterReader();
+    FileWriterReader fwr = new FileWriterReader("Users.txt");
 
 
     public void init(){

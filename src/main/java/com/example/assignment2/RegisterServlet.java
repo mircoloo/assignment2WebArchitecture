@@ -18,14 +18,16 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         s = request.getSession();
+        FileWriterReader fwr = new FileWriterReader("Users.txt");
 
-        FileWriterReader fwr = new FileWriterReader();
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
-        System.out.println("Added user:" + userName + " with password:" + password );
+
         fwr.addUser(userName, password);
+
         s.setAttribute("playerName", userName);
         s.setAttribute("score", 0);
+
         request.getRequestDispatcher("index.jsp").forward(request,response);
     }
 }
