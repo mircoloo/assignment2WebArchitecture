@@ -26,9 +26,9 @@
     <div class="game-div">
         <form action="GameCheckerServlet" method="post">
 
-
+            <% String flags[] = (String[]) session.getAttribute("flags");%>
             <div class="flag-row">
-                <img src="./images/ItalyFlag.png" />
+                <img src="./images/${flags[0]}.png" />
                 <select class="capitals-selector" name="capital1">
                     <option value="Rome">1</option>
                     <option value="Berlin">2</option>
@@ -39,7 +39,7 @@
                 </select>
             </div>
             <div class="flag-row">
-                <img src="./images/GermanyFlag.png" />
+                <img src="./images/${flags[1]}.png" />
                 <select class="capitals-selector" name="capital2">
                     <option value="Rome">1</option>
                     <option value="Berlin">2</option>
@@ -50,7 +50,7 @@
                 </select>
             </div>
             <div class="flag-row">
-                <img src="./images/PortugalFlag.png" />
+                <img src="./images/${flags[2]}.png" />
                 <select class="capitals-selector" name="capital3">
                     <option value="Rome">1</option>
                     <option value="Berlin">2</option>
