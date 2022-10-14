@@ -25,6 +25,8 @@ public class IndexServlet extends CommonServlet{
 
         FileWriterReader fwr = new FileWriterReader("Users.txt");
 
+
+
         session = request.getSession();
         if(session.getAttribute("CURRENT_USER") == null){
             request.setAttribute("err", "You haven't logged in to the system");
