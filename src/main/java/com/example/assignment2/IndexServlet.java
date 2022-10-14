@@ -3,7 +3,9 @@ package com.example.assignment2;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Objects;
 
 @WebServlet(name = "IndexServlet", value = "")
 public class IndexServlet extends CommonServlet{
@@ -20,15 +22,29 @@ public class IndexServlet extends CommonServlet{
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        FileWriterReader fwr = new FileWriterReader("Users.txt");
+
         session = request.getSession();
         if(session.getAttribute("CURRENT_USER") == null){
             request.setAttribute("err", "You haven't logged in to the system");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }else{
-            System.out.println("index page");
-            fwr.getUser();
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            if(Objects.equals(session.getAttribute("CURRENT_USER"), "admin"))
+            {
+                request.getRequestDispatcher("adminPage.jsp").forward(request, response);
+            }else{
+
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
         }
+
+
+
+
+
+
+
 
 
 

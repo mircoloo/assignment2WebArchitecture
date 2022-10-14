@@ -17,12 +17,36 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public void updateScore(int score){
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
         if(score < 0){
-             this.score = 0;
+            this.score = 0;
         }else{
             this.score = score;
         }
+    }
+
+    public void print(){
+        System.out.println("Name:" + username + " Passsword:" + password + " Score: " + score);
     }
 
     public String toString(){

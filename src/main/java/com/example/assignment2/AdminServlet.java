@@ -15,7 +15,7 @@ public class AdminServlet extends CommonServlet {
             System.out.println("You are not the admin");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }else{
-            System.out.println("You're the admin");
+            request.getRequestDispatcher("adminPage.jsp").forward(request, response);
         }
     }
 

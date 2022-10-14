@@ -3,7 +3,10 @@ package com.example.assignment2;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 @WebServlet(name = "RegisterServlet", value = "/registerServlet")
 public class RegisterServlet extends HttpServlet {
@@ -20,13 +23,19 @@ public class RegisterServlet extends HttpServlet {
         s = request.getSession();
         FileWriterReader fwr = new FileWriterReader("Users.txt");
 
-        String userName = request.getParameter("username");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        fwr.addUser(userName, password);
 
-        s.setAttribute("CURRENT_USER", userName);
+
+        s.setAttribute("CURRENT_USER", username);
         s.setAttribute("score", 0);
+
+        fwr.addUser(username, password);
+        fwr.addUser(username, password);
+
+
+
 
         request.getRequestDispatcher("index.jsp").forward(request,response);
     }

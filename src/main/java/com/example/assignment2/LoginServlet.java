@@ -31,6 +31,8 @@ public class LoginServlet extends HttpServlet {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
 
+
+
         if(Objects.equals(userName, "admin") && Objects.equals(password, "nimda")){
             s.setAttribute("CURRENT_USER", userName);
             request.getRequestDispatcher("adminPage.jsp").forward(request,response);

@@ -15,10 +15,61 @@
     My points: <%= session.getAttribute("score") %>
     <br>
     <ol>
-        <li>Algeries</li>
-        <li>Yerevan</li>
-        <li>N'Djamena</li>
-        <li>Prague</li>
+        <li>Rome</li>
+        <li>Berlin</li>
+        <li>Lisbona</li>
+        <li>Bruxelles</li>
+        <li>Paris</li>
+        <li>Bucarest</li>
     </ol>
+
+    <div class="game-div">
+        <form action="GameCheckerServlet" method="post">
+
+
+            <div class="flag-row">
+                <img src="./images/ItalyFlag.png" />
+                <select class="capitals-selector" name="capital1">
+                    <option value="Rome">1</option>
+                    <option value="Berlin">2</option>
+                    <option value="Lisbona">3</option>
+                    <option value="Bruxelles">4</option>
+                    <option value="Paris">5</option>
+                    <option value="Bucarest">6</option>
+                </select>
+            </div>
+            <div class="flag-row">
+                <img src="./images/GermanyFlag.png" />
+                <select class="capitals-selector" name="capital2">
+                    <option value="Rome">1</option>
+                    <option value="Berlin">2</option>
+                    <option value="Lisbona">3</option>
+                    <option value="Bruxelles">4</option>
+                    <option value="Paris">5</option>
+                    <option value="Bucarest">6</option>
+                </select>
+            </div>
+            <div class="flag-row">
+                <img src="./images/PortugalFlag.png" />
+                <select class="capitals-selector" name="capital3">
+                    <option value="Rome">1</option>
+                    <option value="Berlin">2</option>
+                    <option value="Lisbona">3</option>
+                    <option value="Bruxelles">4</option>
+                    <option value="Paris">5</option>
+                    <option value="Bucarest">6</option>
+                </select>
+            </div>
+
+
+            <input type="submit" value="Submit">
+
+        </form>
+
+
+
+
+
+    </div>
 </body>
 </html>

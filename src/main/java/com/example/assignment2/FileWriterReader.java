@@ -1,6 +1,7 @@
 package com.example.assignment2;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class FileWriterReader {
     FileOutputStream f;
@@ -15,10 +16,11 @@ public class FileWriterReader {
 
         try {
             File myFile = new File(filePathName);
-            f = new FileOutputStream(myFile);
+            f = new FileOutputStream(myFile, true);
             o = new ObjectOutputStream(f);
             //Add user
             User user1 = new User(username, password);
+
             o.writeObject(user1);
             System.out.println("Added user: " + user1.toString());
             //Close stream
@@ -30,19 +32,21 @@ public class FileWriterReader {
         }
     }
 
-    public void getUser() throws IOException{
+    public User getUser() throws IOException{
 
         try {
-            File myFile = new File(filePathName);
+            File myFile = new File("Users.txt");
             FileInputStream fi = new FileInputStream(myFile);
             ObjectInputStream oi = new ObjectInputStream(fi);
 
-            User pr1 = (User) oi.readObject();
-            System.out.println(pr1.toString());
+            User pr1 = (User)oi.readObject();
+
+            System.out.println("Retrieved user:" + pr1.getUsername()); //pr2.toString() + pr3.toString());
 
             oi.close();
             fi.close();
 
+            return pr1;
 
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -50,5 +54,27 @@ public class FileWriterReader {
 
     }
 
-}
+    public static ArrayList<User> getUsers() throws IOException, ClassNotFoundException {
+
+        ArrayList<User> users = new ArrayList<User>();
+        FileInputStream fis = new FileInputStream("Users.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        User user =null;
+        boolean isExist = true;
+        while(isExist){
+            if(fis.available() != 0){
+                user = (User) ois.readObject();
+                users.add(user);
+                user.print();
+            }
+            else{
+                isExist =false;
+            }
+        }
+        return users;
+    }
+
+    }
+
+
 

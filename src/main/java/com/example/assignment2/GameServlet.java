@@ -7,6 +7,10 @@ import java.io.IOException;
 
 @WebServlet(name = "GameServlet", value = "/GameServlet")
 public class GameServlet extends CommonServlet {
+
+    public void generateRandomFlags(){
+
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession s = request.getSession();
